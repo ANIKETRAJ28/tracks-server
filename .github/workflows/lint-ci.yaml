@@ -1,0 +1,31 @@
+name: Quality And Build Check
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  quality-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Install Dependencies
+        run: bun install
+
+      - name: Lint
+        run: bun run lint
+
+      - name: Format Check
+        run: bun run format:check
+
+      - name: Build Check
+        run: bun run build
