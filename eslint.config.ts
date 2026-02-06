@@ -3,19 +3,26 @@ import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import tseslint from 'typescript-eslint';
 
 export default [
-  // Base recommended TS rules
+  {
+    ignores: ['dist/**', 'node_modules/**', 'migrations/**'],
+  },
+
   ...tseslint.configs.recommended,
 
   {
-    files: ['**/*.{ts,js}'],
+    files: ['src/**/*.{ts,js}'],
+
+    languageOptions: {
+      parser: tseslint.parser,
+      parserOptions: {
+        project: './tsconfig.json',
+        tsconfigRootDir: import.meta.dirname,
+      },
+    },
 
     plugins: {
       'simple-import-sort': simpleImportSort,
       import: importPlugin,
-    },
-
-    languageOptions: {
-      parser: tseslint.parser,
     },
 
     settings: {
@@ -28,17 +35,7 @@ export default [
     },
 
     rules: {
-      'simple-import-sort/imports': [
-        'error',
-        {
-          groups: [
-            ['^\\u0000'], // side effects (e.g. import 'dotenv/config')
-            ['^@?\\w'], // packages (react, lodash, @types, etc.)
-            ['^\\.'], // relative imports
-          ],
-        },
-      ],
-
+      'simple-import-sort/imports': 'error',
       'simple-import-sort/exports': 'error',
       'import/no-duplicates': 'error',
     },
