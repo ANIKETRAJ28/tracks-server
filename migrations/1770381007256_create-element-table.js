@@ -14,7 +14,7 @@ export const up = (pgm) => {
       id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
       slide_id UUID REFERENCES slides(id) ON DELETE CASCADE,
       track_id UUID REFERENCES tracks(id) ON DELETE CASCADE,
-      parent_id UUID REFERENCES elements(id) ON DELETE CASCADE,
+      parent_id UUID REFERENCES elements(id),
       position NUMERIC(20,10) NOT NULL,
       depth INT DEFAULT 0,
       content JSONB,
@@ -37,5 +37,5 @@ export const up = (pgm) => {
  */
 export const down = (pgm) => {
   pgm.sql(`DROP INDEX IF EXISTS idx_elements_track_slide_parent_pos;`);
-  pg.msql(`DROP TABLE IF EXISTS elements;`);
+  pgm.sql(`DROP TABLE IF EXISTS elements;`);
 };
