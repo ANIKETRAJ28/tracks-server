@@ -1,15 +1,15 @@
 export interface IElement {
   id: string;
-  slideId: string;
-  trackId: string;
-  tagId: string;
-  parentId: string;
+  slide_id: string;
+  track_id: string;
+  tag_id: string;
+  parent_id: string;
   position: number;
   depth: number;
   metadata: object;
   content: string;
   style: object;
   decorator: object;
-  createdAt: Date;
-  updatedAt: Date;
+  created_at: Date;
+  updated_at: Date;
 }

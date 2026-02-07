@@ -1,8 +1,8 @@
 export interface ISlide {
   id: string;
-  trackId: string;
+  track_id: string;
   title: string;
   position: number;
-  createdAt: Date;
-  updatedAt: Date;
+  created_at: Date;
+  updated_at: Date;
 }
