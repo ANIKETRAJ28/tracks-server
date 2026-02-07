@@ -11,11 +11,11 @@ export const shorthands = undefined;
 export const up = (pgm) => {
   pgm.sql(`
     ALTER TABLE tags
-    ADD COLUMN metadata JSONB;
+    ADD COLUMN metadata JSONB DEFAULT '{}'::jsonb;
   `);
   pgm.sql(`
     ALTER TABLE elements
-    ADD COLUMN metadata JSONB;
+    ADD COLUMN metadata JSONB DEFAULT '{}'::jsonb;
   `);
 };
 
