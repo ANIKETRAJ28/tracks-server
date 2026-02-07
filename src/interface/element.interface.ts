@@ -6,6 +6,7 @@ export interface IElement {
   parentId: string;
   position: number;
   depth: number;
+  metadata: object;
   content: string;
   style: object;
   decorator: object;
