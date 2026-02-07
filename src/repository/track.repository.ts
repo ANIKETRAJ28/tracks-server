@@ -116,7 +116,7 @@ export class TrackRepository {
       `;
       const values = [title, id];
       const result = await client.query(query, values);
-      const track = result.rows[0];
+      const track: ITrack = result.rows[0];
       return track;
     } finally {
       client.release();
@@ -134,7 +134,7 @@ export class TrackRepository {
       `;
       const values = [description, id];
       const result = await client.query(query, values);
-      const track = result.rows[0];
+      const track: ITrack = result.rows[0];
       return track;
     } finally {
       client.release();
@@ -152,7 +152,7 @@ export class TrackRepository {
       `;
       const values = [image, id];
       const result = await client.query(query, values);
-      const track = result.rows[0];
+      const track: ITrack = result.rows[0];
       return track;
     } finally {
       client.release();
